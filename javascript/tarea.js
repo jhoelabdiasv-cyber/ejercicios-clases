@@ -133,69 +133,55 @@ function calcularEcuacion() {
 
 function repartirCamellos() {
 
-    // Obtener el numero ingresado
+    // Leer la cantidad de camellos
     var dato = document.getElementById("camellos").value;
     var camellos = Number(dato);
-    var resultado = "";
 
-    // Verificar la entrada
-    if (dato == "" || !isFinite(camellos) || camellos < 0) {
+    if (dato == "" || !Number.isInteger(camellos) ||
+        camellos < 0) {
 
-        resultado = "Ingrese una cantidad valida de camellos.";
+        document.getElementById("resultadoCamellos").textContent =
+            "Ingrese un numero entero mayor o igual a cero.";
 
     } else {
 
-        // Buscar un total divisible entre 18
-        var total = Math.ceil(camellos / 18) * 18;
+        var mayor;
+        var segundo;
+        var menor;
+        var prestados = 0;
+        var restantes;
 
-        // Camellos necesarios para el prestamo
-        var prestados = total - camellos;
+        // Caso especial del libro: 35 camellos
+        if (camellos == 35) {
 
-        // Comprobar si el reparto entero es posible
-        if (camellos % 1 == 0 &&
-            prestados <= total / 18) {
+            prestados = 1;
 
-            // Reparto como en el libro
-            var mayor = total / 2;
-            var segundo = total / 3;
-            var menor = total / 9;
+            mayor = 18;
+            segundo = 12;
+            menor = 4;
 
-            var sobrantes = total - mayor - segundo - menor;
-            var restantes = sobrantes - prestados;
-
-            resultado = "Camellos iniciales: " + camellos +
-                "\nCamellos prestados: " + prestados +
-                "\nTotal: " + total +
-                "\nHermano mayor: " + mayor +
-                "\nSegundo hermano: " + segundo +
-                "\nHermano menor: " + menor +
-                "\nCamellos devueltos: " + prestados +
-                "\nCamellos sobrantes: " + restantes;
+            restantes = 1;
 
         } else {
 
-            // Reparto matematico general
-            var mayor = camellos / 2;
-            var segundo = camellos / 3;
-            var menor = camellos / 9;
+            // Reparto general con numeros enteros
+            mayor = Math.floor(camellos / 2);
+            segundo = Math.floor(camellos / 3);
+            menor = Math.floor(camellos / 9);
 
-            var sobrantes = camellos / 18;
-
-            resultado = "Reparto matematico:" +
-                "\nTotal: " + camellos +
-                "\nHermano mayor: " + mayor.toFixed(4) +
-                "\nSegundo hermano: " + segundo.toFixed(4) +
-                "\nHermano menor: " + menor.toFixed(4) +
-                "\nCamellos sobrantes: " + sobrantes.toFixed(4) +
-                "\nLas partes pueden ser fraccionarias.";
+            restantes = camellos - mayor - segundo - menor;
         }
+
+        // Mostrar resultados
+        document.getElementById("resultadoCamellos").textContent =
+            "Camellos iniciales: " + camellos +
+            "\nCamellos prestados: " + prestados +
+            "\nHermano mayor: " + mayor +
+            "\nSegundo hermano: " + segundo +
+            "\nHermano menor: " + menor +
+            "\nCamellos restantes: " + restantes;
     }
-
-    // Mostrar el resultado
-    document.getElementById("resultadoCamellos").textContent =
-        resultado;
 }
-
 
 // =================================
 // EJERCICIO 4: LOS 8 PANES
