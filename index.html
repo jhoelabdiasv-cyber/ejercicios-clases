@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,7 +22,7 @@
         <p><b>Salida:</b> Valor aproximado de Pi.</p>
 
         <form>
-            <label>Cantidad de terminos:</label>
+            <label for="terminos">Cantidad de terminos:</label>
             <input type="number" id="terminos"
                    value="100" min="1" step="1">
 
@@ -46,13 +45,13 @@
         <p><b>Salida:</b> Soluciones de la ecuacion.</p>
 
         <form>
-            <label>Valor de a:</label>
+            <label for="a">Valor de a:</label>
             <input type="number" id="a" step="any" value="1">
 
-            <label>Valor de b:</label>
+            <label for="b">Valor de b:</label>
             <input type="number" id="b" step="any" value="-5">
 
-            <label>Valor de c:</label>
+            <label for="c">Valor de c:</label>
             <input type="number" id="c" step="any" value="6">
 
             <button type="button" onclick="calcularEcuacion()">
@@ -68,18 +67,18 @@
         <h2>3. Los 35 camellos - Capitulo 3</h2>
 
         <p><b>Descripcion:</b> En el libro El hombre que
-        calculaba, tres hermanos deben repartir una herencia.
-        El mayor recibe la mitad, el segundo un tercio
-        y el menor un noveno.</p>
+        calculaba, tres hermanos deben repartir una
+        herencia de camellos. El mayor recibe la mitad,
+        el segundo un tercio y el menor un noveno.</p>
 
         <p><b>Entrada:</b> Cantidad de camellos.</p>
         <p><b>Salida:</b> Camellos para cada hermano
-        y camellos sobrantes, sin decimales.</p>
+        y camellos sobrantes, en numeros enteros.</p>
 
         <form>
-            <label>Cantidad de camellos:</label>
+            <label for="camellos">Cantidad de camellos:</label>
             <input type="number" id="camellos"
-                   value="35" min="0" step="1">
+                   value="35" min="0" step="any">
 
             <button type="button" onclick="repartirCamellos()">
                 Repartir camellos
@@ -106,15 +105,15 @@
         cada viajero.</p>
 
         <form>
-            <label>Panes del primer viajero:</label>
+            <label for="panesA">Panes del primer viajero:</label>
             <input type="number" id="panesA"
                    step="any" value="5">
 
-            <label>Panes del segundo viajero:</label>
+            <label for="panesB">Panes del segundo viajero:</label>
             <input type="number" id="panesB"
                    step="any" value="3">
 
-            <label>Monedas entregadas:</label>
+            <label for="monedas">Monedas entregadas:</label>
             <input type="number" id="monedas"
                    step="any" value="8">
 
