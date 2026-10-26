@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuatro ejercicios</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <h1>Mis cuatro ejercicios</h1>
+    <p>Trabajo realizado con HTML, CSS y JavaScript.</p>
+
+    <section>
+        <h2>1. Raíz cuadrada</h2>
+        <p><b>Descripción:</b> Calcular la raíz cuadrada de un número.</p>
+        <p><b>Entrada:</b> Un número. <b>Salida:</b> Su raíz cuadrada.</p>
+        <form>
+            <label>Ingrese un número:</label>
+            <input type="number" id="numeroRaiz" step="any" value="25">
+            <button type="button" onclick="calcularRaiz()">Calcular</button>
+        </form>
+        <p class="resultado" id="resultadoRaiz"></p>
+    </section>
+
+    <section>
+        <h2>2. Sumatoria</h2>
+        <p><b>Descripción:</b> Sumar los números desde 1 hasta el número ingresado.</p>
+        <p><b>Entrada:</b> Un número entero positivo. <b>Salida:</b> La suma total.</p>
+        <form>
+            <label>Ingrese el número final:</label>
+            <input type="number" id="numeroSuma" value="5">
+            <button type="button" onclick="calcularSuma()">Sumar</button>
+        </form>
+        <p class="resultado" id="resultadoSuma"></p>
+    </section>
+
+    <section>
+        <h2>3. Los 35 camellos - Capítulo 3</h2>
+        <p><b>Descripción:</b> En El hombre que calculaba, tres hermanos deben
+        repartir una herencia. Al mayor le corresponde la mitad, al segundo
+        un tercio y al menor un noveno.</p>
+        <p><b>Entrada:</b> Cantidad de camellos.
+        <b>Salida:</b> Camellos para cada hermano y sobrantes.</p>
+        <form>
+            <label>Ingrese la cantidad de camellos:</label>
+            <input type="number" id="numeroCamellos" value="35">
+            <button type="button" onclick="repartirCamellos()">Repartir</button>
+        </form>
+        <p class="resultado" id="resultadoCamellos"></p>
+    </section>
+
+    <section>
+        <h2>4. Los 8 panes - Capítulo 4</h2>
+        <p><b>Descripción:</b> Dos viajeros comparten sus panes con una tercera
+        persona. Los tres comen por igual. La tercera persona paga monedas,
+        que se reparten según los panes aportados por cada viajero.</p>
+        <p><b>Entrada:</b> Panes de cada viajero y monedas.
+        <b>Salida:</b> Monedas que recibe cada viajero.</p>
+        <form>
+            <label>Panes del primer viajero:</label>
+            <input type="number" id="panesA" value="5">
+            <label>Panes del segundo viajero:</label>
+            <input type="number" id="panesB" value="3">
+            <label>Monedas entregadas:</label>
+            <input type="number" id="monedas" value="8">
+            <button type="button" onclick="repartirPanes()">Repartir monedas</button>
+        </form>
+        <p class="resultado" id="resultadoPanes"></p>
+    </section>
+
+    <script src="javascript/tarea.js"></script>
+</body>
+</html>
