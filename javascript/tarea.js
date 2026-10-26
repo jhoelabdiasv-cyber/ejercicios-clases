@@ -186,62 +186,61 @@ function repartirCamellos() {
         "\nCamellos sobrantes: " + sobrantes;
 }
 
-
 // =================================
-// EJERCICIO 4: LOS PANES
+// EJERCICIO 4: LOS 8 PANES
 // CAPITULO 4
 // =================================
 
 function repartirPanes() {
 
-    // Leer los datos
-    var datoA = document.getElementById("panesA").value;
-    var datoB = document.getElementById("panesB").value;
-    var datoM = document.getElementById("monedas").value;
+    // Leer los datos ingresados
+    var a = Number(document.getElementById("panesA").value);
+    var b = Number(document.getElementById("panesB").value);
+    var monedas = Number(document.getElementById("monedas").value);
 
-    var a = Number(datoA);
-    var b = Number(datoB);
-    var monedas = Number(datoM);
+    // Convertir los datos a enteros positivos
+    a = Math.round(Math.abs(a));
+    b = Math.round(Math.abs(b));
+    monedas = Math.round(Math.abs(monedas));
 
-    if (datoA == "" || datoB == "" || datoM == "" ||
-        !isFinite(a) || !isFinite(b) || !isFinite(monedas) ||
-        a < 0 || b < 0 || a + b == 0 || monedas < 0) {
+    // Calcular el total de panes
+    var total = a + b;
 
-        document.getElementById("resultadoPanes").textContent =
-            "Ingrese cantidades validas y no negativas.";
+    // Cantidad que come cada persona
+    var porPersona = total / 3;
 
-    } else {
+    // Calcular los aportes
+    var aporteA = a - porPersona;
+    var aporteB = b - porPersona;
 
-        // Calcular el pan para cada persona
-        var porPersona = (a + b) / 3;
-
-        // Calcular el aporte de cada viajero
-        var aporteA = a - porPersona;
-        var aporteB = b - porPersona;
-
-        // No permitir aportes negativos
-        if (aporteA < 0) {
-            aporteA = 0;
-        }
-
-        if (aporteB < 0) {
-            aporteB = 0;
-        }
-
-        // Total de aporte al invitado
-        var aporteTotal = aporteA + aporteB;
-
-        // Calcular las monedas
-        var pagoA = monedas * aporteA / aporteTotal;
-        var pagoB = monedas * aporteB / aporteTotal;
-
-        // Mostrar resultados
-        document.getElementById("resultadoPanes").textContent =
-            "Total de panes: " + (a + b) +
-            "\nPan por persona: " + porPersona.toFixed(2) +
-            "\nAporte del primero: " + aporteA.toFixed(2) +
-            "\nAporte del segundo: " + aporteB.toFixed(2) +
-            "\nMonedas para el primero: " + pagoA.toFixed(2) +
-            "\nMonedas para el segundo: " + pagoB.toFixed(2);
+    // Evitar aportes negativos
+    if (aporteA < 0) {
+        aporteA = 0;
     }
+
+    if (aporteB < 0) {
+        aporteB = 0;
+    }
+
+    // Repartir las monedas
+    var aporteTotal = aporteA + aporteB;
+    var pagoA = 0;
+    var pagoB = 0;
+
+    if (aporteTotal > 0) {
+
+        pagoA = Math.round(monedas * aporteA / aporteTotal);
+        pagoB = monedas - pagoA;
+    }
+
+    // Mostrar resultados sin decimales
+    document.getElementById("resultadoPanes").textContent =
+        "Total de panes: " + total +
+        "\nPanes del primer viajero: " + a +
+        "\nPanes del segundo viajero: " + b +
+        "\nPan por persona (aproximado): " + Math.round(porPersona) +
+        "\nAporte del primero (aproximado): " + Math.round(aporteA) +
+        "\nAporte del segundo (aproximado): " + Math.round(aporteB) +
+        "\nMonedas para el primero: " + pagoA +
+        "\nMonedas para el segundo: " + pagoB;
 }
