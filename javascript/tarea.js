@@ -5,7 +5,7 @@
 
 function calcularPi() {
 
-    // Leer la cantidad de terminos
+    // Leer los terminos
     var dato = document.getElementById("terminos").value;
     var n = Number(dato);
 
@@ -17,14 +17,13 @@ function calcularPi() {
 
     } else {
 
-        // Valor inicial de Pi
+        // Valor inicial
         var pi = 3;
 
         // Serie de Nilakantha
         for (var i = 1; i <= n; i++) {
 
             var x = 2 * i;
-
             var termino = 4 / (x * (x + 1) * (x + 2));
 
             if (i % 2 == 1) {
@@ -34,7 +33,7 @@ function calcularPi() {
             }
         }
 
-        // Mostrar resultado
+        // Mostrar el resultado
         document.getElementById("resultadoPi").textContent =
             "Cantidad de terminos: " + n +
             "\nValor aproximado de Pi: " + pi.toFixed(10);
@@ -59,7 +58,7 @@ function calcularEcuacion() {
 
     var resultado = "";
 
-    // Validar entradas
+    // Comprobar datos
     if (datoA == "" || datoB == "" || datoC == "" ||
         !isFinite(a) || !isFinite(b) || !isFinite(c)) {
 
@@ -67,7 +66,7 @@ function calcularEcuacion() {
 
     } else if (a == 0) {
 
-        // Si a es cero, es ecuacion lineal
+        // Ecuacion lineal
         if (b == 0) {
 
             if (c == 0) {
@@ -86,7 +85,7 @@ function calcularEcuacion() {
 
     } else {
 
-        // Calcular el discriminante
+        // Discriminante
         var d = b * b - 4 * a * c;
 
         if (d > 0) {
@@ -101,7 +100,7 @@ function calcularEcuacion() {
 
         } else if (d == 0) {
 
-            // Una solucion real doble
+            // Una solucion doble
             var x = -b / (2 * a);
 
             resultado = "Una solucion real doble:" +
@@ -121,7 +120,7 @@ function calcularEcuacion() {
         }
     }
 
-    // Mostrar resultado
+    // Mostrar el resultado
     document.getElementById("resultadoEcuacion").textContent =
         resultado;
 }
@@ -134,55 +133,57 @@ function calcularEcuacion() {
 
 function repartirCamellos() {
 
-    // Leer la cantidad de camellos
+    // Obtener el numero ingresado
     var dato = document.getElementById("camellos").value;
     var camellos = Number(dato);
 
-    if (dato == "" || !Number.isSafeInteger(camellos) ||
-        camellos < 0) {
+    // Comprobar que sea un numero finito
+    if (dato == "" || !isFinite(camellos)) {
 
         document.getElementById("resultadoCamellos").textContent =
-            "Ingrese un numero entero mayor o igual a cero.";
+            "Ingrese una cantidad numerica.";
+
+        return;
+    }
+
+    // Convertir a entero no negativo
+    camellos = Math.floor(Math.abs(camellos));
+
+    // Variables para el reparto
+    var mayor = 0;
+    var segundo = 0;
+    var menor = 0;
+    var prestados = 0;
+    var sobrantes = 0;
+
+    // Caso original del libro
+    if (camellos == 35) {
+
+        prestados = 1;
+        mayor = 18;
+        segundo = 12;
+        menor = 4;
+        sobrantes = 1;
 
     } else {
 
-        var mayor;
-        var segundo;
-        var menor;
-        var prestados = 0;
-        var restantes;
+        // Reparto general con numeros enteros
+        mayor = Math.floor(camellos / 2);
+        segundo = Math.floor(camellos / 3);
+        menor = Math.floor(camellos / 9);
 
-        // Caso original del libro
-        if (camellos == 35) {
-
-            prestados = 1;
-
-            mayor = 18;
-            segundo = 12;
-            menor = 4;
-
-            restantes = 1;
-
-        } else {
-
-            // Reparto general en numeros enteros
-            mayor = Math.floor(camellos / 2);
-            segundo = Math.floor(camellos / 3);
-            menor = Math.floor(camellos / 9);
-
-            // Camellos que quedan
-            restantes = camellos - mayor - segundo - menor;
-        }
-
-        // Mostrar resultados
-        document.getElementById("resultadoCamellos").textContent =
-            "Camellos iniciales: " + camellos +
-            "\nCamellos prestados: " + prestados +
-            "\nHermano mayor: " + mayor +
-            "\nSegundo hermano: " + segundo +
-            "\nHermano menor: " + menor +
-            "\nCamellos restantes: " + restantes;
+        // Calcular los camellos restantes
+        sobrantes = camellos - mayor - segundo - menor;
     }
+
+    // Mostrar los resultados sin decimales
+    document.getElementById("resultadoCamellos").textContent =
+        "Camellos iniciales: " + camellos +
+        "\nCamellos prestados: " + prestados +
+        "\nHermano mayor: " + mayor +
+        "\nSegundo hermano: " + segundo +
+        "\nHermano menor: " + menor +
+        "\nCamellos sobrantes: " + sobrantes;
 }
 
 
@@ -193,7 +194,7 @@ function repartirCamellos() {
 
 function repartirPanes() {
 
-    // Leer los datos de entrada
+    // Leer los datos
     var datoA = document.getElementById("panesA").value;
     var datoB = document.getElementById("panesB").value;
     var datoM = document.getElementById("monedas").value;
@@ -211,14 +212,14 @@ function repartirPanes() {
 
     } else {
 
-        // Cada persona come la misma cantidad
+        // Calcular el pan para cada persona
         var porPersona = (a + b) / 3;
 
-        // Calcular aporte al invitado
+        // Calcular el aporte de cada viajero
         var aporteA = a - porPersona;
         var aporteB = b - porPersona;
 
-        // Evitar aportes negativos
+        // No permitir aportes negativos
         if (aporteA < 0) {
             aporteA = 0;
         }
@@ -227,10 +228,10 @@ function repartirPanes() {
             aporteB = 0;
         }
 
-        // Total aportado al invitado
+        // Total de aporte al invitado
         var aporteTotal = aporteA + aporteB;
 
-        // Repartir monedas proporcionalmente
+        // Calcular las monedas
         var pagoA = monedas * aporteA / aporteTotal;
         var pagoB = monedas * aporteB / aporteTotal;
 
