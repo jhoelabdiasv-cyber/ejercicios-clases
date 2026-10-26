@@ -186,32 +186,29 @@ function repartirCamellos() {
 }
 
 
-// =================================
-// EJERCICIO 4: LOS 8 PANES
-// CAPITULO 4
-// =================================
+/* EJERCICIO 4: LOS 8 PANES */
 
 function repartirPanes() {
 
-    // Leer los datos ingresados
+    // Leer los datos
     var a = Number(document.getElementById("panesA").value);
     var b = Number(document.getElementById("panesB").value);
     var monedas = Number(document.getElementById("monedas").value);
 
-    // Redondear los datos a enteros
+    // Redondear todos los datos a enteros
     a = Math.round(Math.abs(a));
     b = Math.round(Math.abs(b));
     monedas = Math.round(Math.abs(monedas));
 
-    // Total de panes
+    // Sumar todos los panes
     var total = a + b;
 
-    // Cada persona come la tercera parte
-    var porPersona = total / 3;
+    // Calcular lo que come cada persona
+    var porPersona = Math.round(total / 3);
 
-    // Aporte de cada viajero al invitado
-    var aporteA = a - porPersona;
-    var aporteB = b - porPersona;
+    // Calcular los aportes exactos para el reparto
+    var aporteA = 2 * a - b;
+    var aporteB = 2 * b - a;
 
     // Evitar aportes negativos
     if (aporteA < 0) {
@@ -222,10 +219,10 @@ function repartirPanes() {
         aporteB = 0;
     }
 
-    // Total aportado
+    // Calcular total aportado
     var aporteTotal = aporteA + aporteB;
 
-    // Calcular las monedas enteras
+    // Repartir las monedas
     var pagoA = 0;
     var pagoB = 0;
 
@@ -235,14 +232,14 @@ function repartirPanes() {
         pagoB = monedas - pagoA;
     }
 
-    // Mostrar todos los resultados sin decimales
+    // Mostrar resultados SOLO ENTEROS
     document.getElementById("resultadoPanes").textContent =
         "Total de panes: " + total +
-        "\nPanes del primer viajero: " + a +
-        "\nPanes del segundo viajero: " + b +
-        "\nPan por persona (aproximado): " + Math.round(porPersona) +
-        "\nAporte del primero (aproximado): " + Math.round(aporteA) +
-        "\nAporte del segundo (aproximado): " + Math.round(aporteB) +
+        "\nPan por persona (aproximado): " + porPersona +
+        "\nAporte del primero (aproximado): " + 
+        Math.round(aporteA / 3) +
+        "\nAporte del segundo (aproximado): " + 
+        Math.round(aporteB / 3) +
         "\nMonedas para el primero: " + pagoA +
         "\nMonedas para el segundo: " + pagoB;
 }
