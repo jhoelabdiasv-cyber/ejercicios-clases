@@ -9,7 +9,6 @@ function calcularPi() {
     var dato = document.getElementById("terminos").value;
     var n = Number(dato);
 
-    // Verificar que sea un entero positivo
     if (dato == "" || !isFinite(n) ||
         n < 1 || n % 1 != 0 || n > 1000000) {
 
@@ -49,7 +48,7 @@ function calcularPi() {
 
 function calcularEcuacion() {
 
-    // Leer datos
+    // Leer los coeficientes
     var datoA = document.getElementById("a").value;
     var datoB = document.getElementById("b").value;
     var datoC = document.getElementById("c").value;
@@ -68,7 +67,7 @@ function calcularEcuacion() {
 
     } else if (a == 0) {
 
-        // Si a es cero, no es cuadratica
+        // Si a es cero, es ecuacion lineal
         if (b == 0) {
 
             if (c == 0) {
@@ -81,13 +80,13 @@ function calcularEcuacion() {
 
             var x = -c / b;
 
-            resultado = "Ecuacion lineal." +
+            resultado = "Ecuacion lineal:" +
                 "\nx = " + x.toFixed(6);
         }
 
     } else {
 
-        // Calcular discriminante
+        // Calcular el discriminante
         var d = b * b - 4 * a * c;
 
         if (d > 0) {
@@ -128,8 +127,10 @@ function calcularEcuacion() {
 }
 
 
-
-/* EJERCICIO 3: LOS CAMELLOS */
+// =================================
+// EJERCICIO 3: LOS CAMELLOS
+// CAPITULO 3
+// =================================
 
 function repartirCamellos() {
 
@@ -137,7 +138,7 @@ function repartirCamellos() {
     var dato = document.getElementById("camellos").value;
     var camellos = Number(dato);
 
-    if (dato == "" || !Number.isInteger(camellos) ||
+    if (dato == "" || !Number.isSafeInteger(camellos) ||
         camellos < 0) {
 
         document.getElementById("resultadoCamellos").textContent =
@@ -151,7 +152,7 @@ function repartirCamellos() {
         var prestados = 0;
         var restantes;
 
-        // Caso especial del libro: 35 camellos
+        // Caso original del libro
         if (camellos == 35) {
 
             prestados = 1;
@@ -164,11 +165,12 @@ function repartirCamellos() {
 
         } else {
 
-            // Reparto general con numeros enteros
+            // Reparto general en numeros enteros
             mayor = Math.floor(camellos / 2);
             segundo = Math.floor(camellos / 3);
             menor = Math.floor(camellos / 9);
 
+            // Camellos que quedan
             restantes = camellos - mayor - segundo - menor;
         }
 
@@ -183,8 +185,9 @@ function repartirCamellos() {
     }
 }
 
+
 // =================================
-// EJERCICIO 4: LOS 8 PANES
+// EJERCICIO 4: LOS PANES
 // CAPITULO 4
 // =================================
 
@@ -204,19 +207,18 @@ function repartirPanes() {
         a < 0 || b < 0 || a + b == 0 || monedas < 0) {
 
         document.getElementById("resultadoPanes").textContent =
-            "Ingrese panes no negativos, al menos un pan," +
-            " y monedas no negativas.";
+            "Ingrese cantidades validas y no negativas.";
 
     } else {
 
-        // Cada una de las tres personas come igual
+        // Cada persona come la misma cantidad
         var porPersona = (a + b) / 3;
 
-        // Calcular cuanto aporta cada viajero
+        // Calcular aporte al invitado
         var aporteA = a - porPersona;
         var aporteB = b - porPersona;
 
-        // Un aporte negativo se convierte en cero
+        // Evitar aportes negativos
         if (aporteA < 0) {
             aporteA = 0;
         }
@@ -225,10 +227,10 @@ function repartirPanes() {
             aporteB = 0;
         }
 
-        // Calcular total aportado al invitado
+        // Total aportado al invitado
         var aporteTotal = aporteA + aporteB;
 
-        // Repartir el dinero proporcionalmente
+        // Repartir monedas proporcionalmente
         var pagoA = monedas * aporteA / aporteTotal;
         var pagoB = monedas * aporteB / aporteTotal;
 
@@ -242,4 +244,3 @@ function repartirPanes() {
             "\nMonedas para el segundo: " + pagoB.toFixed(2);
     }
 }
-
