@@ -5,7 +5,7 @@
 
 function calcularPi() {
 
-    // Leer los terminos
+    // Leer cantidad de terminos
     var dato = document.getElementById("terminos").value;
     var n = Number(dato);
 
@@ -17,7 +17,7 @@ function calcularPi() {
 
     } else {
 
-        // Valor inicial
+        // Valor inicial de Pi
         var pi = 3;
 
         // Serie de Nilakantha
@@ -33,7 +33,7 @@ function calcularPi() {
             }
         }
 
-        // Mostrar el resultado
+        // Mostrar resultado
         document.getElementById("resultadoPi").textContent =
             "Cantidad de terminos: " + n +
             "\nValor aproximado de Pi: " + pi.toFixed(10);
@@ -47,7 +47,7 @@ function calcularPi() {
 
 function calcularEcuacion() {
 
-    // Leer los coeficientes
+    // Leer coeficientes
     var datoA = document.getElementById("a").value;
     var datoB = document.getElementById("b").value;
     var datoC = document.getElementById("c").value;
@@ -58,7 +58,7 @@ function calcularEcuacion() {
 
     var resultado = "";
 
-    // Comprobar datos
+    // Validar datos
     if (datoA == "" || datoB == "" || datoC == "" ||
         !isFinite(a) || !isFinite(b) || !isFinite(c)) {
 
@@ -120,7 +120,7 @@ function calcularEcuacion() {
         }
     }
 
-    // Mostrar el resultado
+    // Mostrar resultado
     document.getElementById("resultadoEcuacion").textContent =
         resultado;
 }
@@ -133,11 +133,10 @@ function calcularEcuacion() {
 
 function repartirCamellos() {
 
-    // Obtener el numero ingresado
+    // Leer cantidad de camellos
     var dato = document.getElementById("camellos").value;
     var camellos = Number(dato);
 
-    // Comprobar que sea un numero finito
     if (dato == "" || !isFinite(camellos)) {
 
         document.getElementById("resultadoCamellos").textContent =
@@ -149,7 +148,7 @@ function repartirCamellos() {
     // Convertir a entero no negativo
     camellos = Math.floor(Math.abs(camellos));
 
-    // Variables para el reparto
+    // Variables
     var mayor = 0;
     var segundo = 0;
     var menor = 0;
@@ -167,16 +166,16 @@ function repartirCamellos() {
 
     } else {
 
-        // Reparto general con numeros enteros
+        // Repartir con numeros enteros
         mayor = Math.floor(camellos / 2);
         segundo = Math.floor(camellos / 3);
         menor = Math.floor(camellos / 9);
 
-        // Calcular los camellos restantes
+        // Calcular sobrantes
         sobrantes = camellos - mayor - segundo - menor;
     }
 
-    // Mostrar los resultados sin decimales
+    // Mostrar resultados
     document.getElementById("resultadoCamellos").textContent =
         "Camellos iniciales: " + camellos +
         "\nCamellos prestados: " + prestados +
@@ -185,6 +184,7 @@ function repartirCamellos() {
         "\nHermano menor: " + menor +
         "\nCamellos sobrantes: " + sobrantes;
 }
+
 
 // =================================
 // EJERCICIO 4: LOS 8 PANES
@@ -198,18 +198,18 @@ function repartirPanes() {
     var b = Number(document.getElementById("panesB").value);
     var monedas = Number(document.getElementById("monedas").value);
 
-    // Convertir los datos a enteros positivos
+    // Redondear los datos a enteros
     a = Math.round(Math.abs(a));
     b = Math.round(Math.abs(b));
     monedas = Math.round(Math.abs(monedas));
 
-    // Calcular el total de panes
+    // Total de panes
     var total = a + b;
 
-    // Cantidad que come cada persona
+    // Cada persona come la tercera parte
     var porPersona = total / 3;
 
-    // Calcular los aportes
+    // Aporte de cada viajero al invitado
     var aporteA = a - porPersona;
     var aporteB = b - porPersona;
 
@@ -222,8 +222,10 @@ function repartirPanes() {
         aporteB = 0;
     }
 
-    // Repartir las monedas
+    // Total aportado
     var aporteTotal = aporteA + aporteB;
+
+    // Calcular las monedas enteras
     var pagoA = 0;
     var pagoB = 0;
 
@@ -233,7 +235,7 @@ function repartirPanes() {
         pagoB = monedas - pagoA;
     }
 
-    // Mostrar resultados sin decimales
+    // Mostrar todos los resultados sin decimales
     document.getElementById("resultadoPanes").textContent =
         "Total de panes: " + total +
         "\nPanes del primer viajero: " + a +
