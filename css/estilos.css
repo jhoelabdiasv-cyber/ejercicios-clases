@@ -1,4 +1,5 @@
 
+/* DISEÑO GENERAL */
 body {
     font-family: Arial, sans-serif;
     background-color: #eef2f7;
@@ -6,11 +7,17 @@ body {
     margin: 20px;
 }
 
+/* TITULO PRINCIPAL */
 h1 {
     text-align: center;
     color: #174b87;
 }
 
+body > p {
+    text-align: center;
+}
+
+/* CAJA DE CADA EJERCICIO */
 section {
     background-color: white;
     max-width: 650px;
@@ -20,32 +27,47 @@ section {
     border-radius: 8px;
 }
 
+/* TITULOS */
 h2 {
     color: #174b87;
 }
 
+/* ETIQUETAS */
 label {
     display: block;
     margin-top: 12px;
 }
 
+/* CAMPOS PARA INGRESAR DATOS */
 input {
     display: block;
-    padding: 8px;
+    padding: 10px;
     margin-top: 5px;
     width: 90%;
+    border: 1px solid #aaa;
+    border-radius: 5px;
 }
 
+/* BOTONES */
 button {
     background-color: #174b87;
     color: white;
     border: none;
-    padding: 10px;
-    margin-top: 12px;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
+button:hover {
+    background-color: #0c3058;
+}
+
+/* RESULTADOS */
 .resultado {
     background-color: #e5efff;
     padding: 12px;
+    border-radius: 5px;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
 }
