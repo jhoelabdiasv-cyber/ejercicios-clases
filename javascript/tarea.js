@@ -128,76 +128,72 @@ function calcularEcuacion() {
 }
 
 
-// =================================
-// EJERCICIO 3: LOS 35 CAMELLOS
-// CAPITULO 3
-// =================================
+
+/* EJERCICIO 3: LOS CAMELLOS */
 
 function repartirCamellos() {
 
-    // Leer cantidad de camellos
+    // Obtener el numero ingresado
     var dato = document.getElementById("camellos").value;
     var camellos = Number(dato);
+    var resultado = "";
 
-    if (dato == "" || !isFinite(camellos) ||
-        camellos < 1 || camellos % 1 != 0 ||
-        camellos > 1000000) {
+    // Verificar la entrada
+    if (dato == "" || !isFinite(camellos) || camellos < 0) {
 
-        document.getElementById("resultadoCamellos").textContent =
-            "Ingrese un entero entre 1 y 1000000.";
+        resultado = "Ingrese una cantidad valida de camellos.";
 
     } else {
 
-        // Buscar el siguiente multiplo de 18
-        var total = camellos;
+        // Buscar un total divisible entre 18
+        var total = Math.ceil(camellos / 18) * 18;
 
-        while (total % 18 != 0) {
-            total = total + 1;
-        }
-
-        // Calcular los camellos prestados
+        // Camellos necesarios para el prestamo
         var prestados = total - camellos;
 
-        // Repartir entre los hermanos
-        var mayor = total / 2;
-        var segundo = total / 3;
-        var menor = total / 9;
+        // Comprobar si el reparto entero es posible
+        if (camellos % 1 == 0 &&
+            prestados <= total / 18) {
 
-        // Calcular los sobrantes
-        var sobrantes = total - mayor - segundo - menor;
+            // Reparto como en el libro
+            var mayor = total / 2;
+            var segundo = total / 3;
+            var menor = total / 9;
 
-        if (sobrantes >= prestados) {
-
+            var sobrantes = total - mayor - segundo - menor;
             var restantes = sobrantes - prestados;
 
-            document.getElementById("resultadoCamellos").textContent =
-                "Camellos iniciales: " + camellos +
+            resultado = "Camellos iniciales: " + camellos +
                 "\nCamellos prestados: " + prestados +
-                "\nTotal para repartir: " + total +
+                "\nTotal: " + total +
                 "\nHermano mayor: " + mayor +
                 "\nSegundo hermano: " + segundo +
                 "\nHermano menor: " + menor +
                 "\nCamellos devueltos: " + prestados +
-                "\nCamellos restantes: " + restantes;
+                "\nCamellos sobrantes: " + restantes;
 
         } else {
 
-            // Mostrar la division matematica
-            // cuando no es posible repartir enteros
-            var parte1 = camellos / 2;
-            var parte2 = camellos / 3;
-            var parte3 = camellos / 9;
+            // Reparto matematico general
+            var mayor = camellos / 2;
+            var segundo = camellos / 3;
+            var menor = camellos / 9;
 
-            document.getElementById("resultadoCamellos").textContent =
-                "No es posible realizar el reparto entero" +
-                " mediante este prestamo." +
-                "\nReparto teorico sin prestamo:" +
-                "\nMayor: " + parte1.toFixed(2) +
-                "\nSegundo: " + parte2.toFixed(2) +
-                "\nMenor: " + parte3.toFixed(2) +
-                "\nEstas cantidades pueden incluir fracciones.";
+            var sobrantes = camellos / 18;
+
+            resultado = "Reparto matematico:" +
+                "\nTotal: " + camellos +
+                "\nHermano mayor: " + mayor.toFixed(4) +
+                "\nSegundo hermano: " + segundo.toFixed(4) +
+                "\nHermano menor: " + menor.toFixed(4) +
+                "\nCamellos sobrantes: " + sobrantes.toFixed(4) +
+                "\nLas partes pueden ser fraccionarias.";
         }
     }
+
+    // Mostrar el resultado
+    document.getElementById("resultadoCamellos").textContent =
+        resultado;
 }
 
 
